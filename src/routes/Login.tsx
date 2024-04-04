@@ -1,6 +1,8 @@
 import React from 'react'
 import Illustration from "../assets/shopping-bag.svg"
 import { LogoAppLight } from "../icons";
+import { Button } from '@/components/button';
+import { Input } from '@/components/input';
 
 export default function PageLogin() {
   return <Scaffold illustration={<img src={Illustration} />}>
@@ -37,8 +39,8 @@ function Contents() {
     </section>
 
     <section className="flex flex-col gap-2">
-      <label htmlFor="email">Email</label>
-      <input
+      <label htmlFor="email">Email<span className="text-red-600">*</span></label>
+      <Input
         type="email"
         value={email}
         onChange={e => setEmail(e.target.value)}
@@ -47,8 +49,8 @@ function Contents() {
     </section>
 
     <section className="flex flex-col gap-2">
-      <label htmlFor="password">Password</label>
-      <input
+      <label htmlFor="password">Password<span className="text-red-600">*</span></label>
+      <Input
         type="password"
         value={password}
         onChange={e => setPassword(e.target.value)}
@@ -56,16 +58,16 @@ function Contents() {
         placeholder="Enter your Password" />
     </section>
 
-    <button
-      className="primary emphasis"
+    <Button
+      className="bg-blue-700 hover:bg-blue-800 shadow-lg shadow-blue-800/40 hover:shadow-xl transition-shadow hover:shadow-blue-800/30"
       disabled={email === "" || password === ""}>
       Continue
-    </button>
+    </Button>
 
     <hr />
 
-    <p className="text-center ">New User?</p>
-    <button>Create New Account</button>
+    <p className="text-sm">New User?</p>
+    <Button variant="secondary">Create New Account</Button>
 
     <div className="flex-grow" />
 
