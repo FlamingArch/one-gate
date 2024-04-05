@@ -1,14 +1,15 @@
 import React from 'react'
 import Illustration from "../assets/shopping-bag.svg"
-import { LogoAppLight } from "../icons";
-import { Button } from '@/components/button';
-import { Input } from '@/components/input';
+import { LogoAppLight } from '@/icons'
+import { Input } from '@/components/input'
+import { Button } from '@/components/button'
 import { useNavigate } from 'react-router-dom'
 
-export default function PageLogin() {
+export default function PageSignUp() {
   return <Scaffold illustration={<img src={Illustration} />}>
     <Contents />
   </Scaffold>
+
 }
 
 function Scaffold({ children, illustration }: { children?: React.ReactNode, illustration?: React.ReactNode }) {
@@ -24,7 +25,11 @@ function Scaffold({ children, illustration }: { children?: React.ReactNode, illu
 
 function Contents() {
   const [email, setEmail] = React.useState("")
+  const [name, setName] = React.useState("")
+  const [apartment, setApartment] = React.useState("")
+  const [houseNo, setHouseNo] = React.useState("")
   const [password, setPassword] = React.useState("")
+  const [confirmPassword, setConfirmPassword] = React.useState("")
   const navigate = useNavigate()
 
   return <>
@@ -36,8 +41,18 @@ function Contents() {
     <section className="flex-grow" />
 
     <section className="flex flex-col">
-      <h2>Sign In</h2>
-      <p>Continue To Your Secured Home</p>
+      <h2>Sign Up</h2>
+      <p>Secure your Home with the best out there.</p>
+    </section>
+
+    <section className="flex flex-col gap-2">
+      <label htmlFor="email">Name<span className="text-red-600">*</span></label>
+      <Input
+        type="text"
+        value={name}
+        onChange={e => setName(e.target.value)}
+        name="name"
+        placeholder="Enter your Name" />
     </section>
 
     <section className="flex flex-col gap-2">
@@ -60,6 +75,16 @@ function Contents() {
         placeholder="Enter your Password" />
     </section>
 
+    <section className="flex flex-col gap-2">
+      <label htmlFor="password">Confirm Password<span className="text-red-600">*</span></label>
+      <Input
+        type="password"
+        value={confirmPassword}
+        onChange={e => setConfirmPassword(e.target.value)}
+        name="confirmPassword"
+        placeholder="Confirm your Password" />
+    </section>
+
     <Button
       className="bg-blue-700 hover:bg-blue-800 shadow-lg shadow-blue-800/40 hover:shadow-xl transition-shadow hover:shadow-blue-800/30"
       disabled={email === "" || password === ""}>
@@ -68,11 +93,11 @@ function Contents() {
 
     <hr />
 
-    <p className="text-sm">New User?</p>
+    <p className="text-sm">Already Have An Account?</p>
     <Button
-      onClick={() => navigate("/signup")}
+      onClick={() => navigate("/login")}
       variant="secondary">
-      Create New Account
+      Sign In
     </Button>
 
     <div className="flex-grow" />
